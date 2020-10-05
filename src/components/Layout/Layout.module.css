@@ -1,0 +1,29 @@
+.Layout {
+    position: relative;
+    min-height: 100vh;
+}
+
+.Homepage {
+    background-image: linear-gradient(115deg, #16a085 0%, #f4d03f 100%);
+}
+
+.AboutMe {
+}
+
+.Portfolio {
+    background-image: linear-gradient(320deg, #13547a 0%, #3c8179 100%);
+    /* background-image: linear-gradient(320deg, #09203f 0%, #537895 100%); */
+}
+
+.Contact {
+}
+
+.Header {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.Content {
+    z-index: 1;
+}

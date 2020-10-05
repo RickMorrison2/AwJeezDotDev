@@ -1,0 +1,10 @@
+.Contact {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 92vh;
+}
+
+@media (max-width: 499px) {
+}

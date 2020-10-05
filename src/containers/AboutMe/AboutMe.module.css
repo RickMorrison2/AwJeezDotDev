@@ -1,0 +1,12 @@
+.AboutMe {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.Content {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
