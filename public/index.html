@@ -9,6 +9,10 @@
             name="description"
             content="Custom Website Created in React by Rick Morrison"
         />
+        <meta
+            name="google-signin-client_id"
+            content="349723966197-2j1ikk037dj0q1r0ts3la4qngv11gjne.apps.googleusercontent.com"
+        />
         <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
         <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -38,11 +42,12 @@
     -->
         <title>Rick Morrison, Web Developer</title>
         <base href="/" />
+        <script src="https://apis.google.com/js/platform.js"></script>
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <script src="https://www.google.com/recaptcha/api.js?render=6Lcg4dEZAAAAACs6BeyfbLEG-ZC4i6GQzgDTd7ZI"></script>
-        <script src="/src/index.js"></script>
+        <!-- <script src="/src/index.js"></script> -->
         <div id="root"></div>
         <!--
       This HTML file is a template.
@@ -53,5 +58,59 @@
 
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
-    --></body>
+    -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>
+            window.jQuery ||
+                document.write(
+                    '<script src="js/vendor/jquery-1.11.2.min.js"><\/script>'
+                );
+        </script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <script>
+            function openCity(cityName) {
+                var i;
+                var x = document.getElementsByClassName('city');
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = 'none';
+                }
+                document.getElementById(cityName).style.display = 'block';
+            }
+        </script>
+        <script>
+            $(document).ready(function () {
+                // Add smooth scrolling to all links
+                $('.fixed-side-navbar a, .primary-button a').on(
+                    'click',
+                    function (event) {
+                        // Make sure this.hash has a value before overriding default behavior
+                        if (this.hash !== '') {
+                            // Prevent default anchor click behavior
+                            event.preventDefault();
+
+                            // Store hash
+                            var hash = this.hash;
+
+                            // Using jQuery's animate() method to add smooth page scroll
+                            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                            $('html, body').animate(
+                                {
+                                    scrollTop: $(hash).offset().top,
+                                },
+                                800,
+                                function () {
+                                    // Add hash (#) to URL when done scrolling (default click behavior)
+                                    window.location.hash = hash;
+                                }
+                            );
+                        } // End if
+                    }
+                );
+            });
+        </script>
+    </body>
 </html>

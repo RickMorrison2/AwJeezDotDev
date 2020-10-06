@@ -73,13 +73,10 @@ app.listen(port);
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+
 
 exports.sendContactEmail = functions.https.onRequest((req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     const smtpTrans = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -117,3 +114,41 @@ exports.sendContactEmail = functions.https.onRequest((req, res) => {
     });
     // });
 });
+
+exports.sendResumeRequestEmail = functions.https.onRequest((req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    res.setHeader('Vary', 'Origin');
+    
+    const smtpTrans = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: `${functions.config().env.gmail_user}`,
+            pass: `${functions.config().env.gmail_pass}`,
+        },
+    });
+
+    smtpTrans.verify((err, success) => {
+        if (err) {
+            console.log('verification error: ', err);
+        } else {
+            console.log('Server is ready to take messages! Success: ', success);
+        }
+    });
+
+    const mailOptions = {
+        from: 'AwJeez.Dev Resume Request',
+        to: `${functions.config().env.my_email}`,
+        subject: `IMPORTANT! Resume Request from ${req.query.email} via AwJeez.Dev`,
+        text: `Somebody with the email address of ${req.query.email} has signed in to AwJeez.Dev via Google, presumably to request your resume. Email them within 48 hours to check in.`
+    };
+
+    smtpTrans.sendMail(mailOptions, (error, data) => {
+        if (error) {
+            res.json({ msg: 'fail' });
+        } else {
+            res.json({ msg: 'success' });
+        }
+    })
+})

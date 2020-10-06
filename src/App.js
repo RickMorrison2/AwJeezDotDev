@@ -1,32 +1,29 @@
 import React from 'react';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
-import Homepage from './containers/Homepage/Homepage';
-import { ParallaxProvider } from 'react-scroll-parallax';
-
-import './App.css';
-import AboutMe from './containers/AboutMe/AboutMe';
+import Intro from './containers/Intro/Intro';
+import Highlights from './containers/Highlights/Highlights';
 import Portfolio from './containers/Portfolio/Portfolio';
 import Contact from './containers/Contact/Contact';
+import Navbar from './containers/Navbar/Navbar';
+// import AboutMe from './containers/AboutMe/AboutMe';
+import Footer from './containers/Footer/Footer';
+import './css/templatemo-main.css';
+import './css/owl-carousel.css';
+import './css/hero-slider.css';
+import './css/fontAwesome.css';
+import './css/bootstrap.min.css';
 
 const App = (props) => {
-    let routes = (
-        <Switch>
-            <Route path="/about-me" component={AboutMe} />
-            <Route path="/portfolio" component={Portfolio} />
-            <Route path="/contact" exact component={Contact} />
-            <Route path="/" exact component={Homepage} />
-            <Redirect to="/" />
-        </Switch>
-    );
-
     return (
-        <ParallaxProvider>
-            <div className="App">
-                <Layout>{routes}</Layout>
-            </div>
-        </ParallaxProvider>
+        <div className="App">
+            <Navbar />
+            <Intro />
+            <Highlights />
+            <Portfolio />
+            {/* <AboutMe /> */}
+            <Contact />
+            <Footer />
+        </div>
     );
 };
 
-export default withRouter(App);
+export default App;
